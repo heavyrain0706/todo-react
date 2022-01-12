@@ -1,7 +1,6 @@
 import { Modal } from "antd";
 import { FC, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { TodosActionCreators } from "../../store/actionCreators";
 import classes from './Item.module.scss'
 

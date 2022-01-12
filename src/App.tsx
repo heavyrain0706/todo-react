@@ -1,5 +1,4 @@
-import React, { FC } from "react";
-import { useDispatch } from "react-redux";
+import { FC } from "react";
 import "./App.scss"
 import Box from "./components/Box/Box";
  
