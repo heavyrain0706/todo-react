@@ -1,0 +1,22 @@
+@import '~antd/dist/antd.css';
+
+body {
+  background: linear-gradient(to bottom right, #F3B8C2 25%, #DEA7C4 50%, #9C71C8 100%);
+}
+
+.ant-btn {
+  &:hover {
+    color: #9C71C8;
+    border-color: #9C71C8;
+  }
+}
+
+.ant-btn-primary {
+  border-color: #D9D9D9;
+  background-color: transparent;
+  color: #000;
+    &:hover {
+      background-color: #9C71C8;
+      color: #fff;
+    }
+}

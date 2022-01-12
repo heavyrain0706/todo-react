@@ -1,0 +1,35 @@
+.header__wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 30px 0;
+}
+
+.box__input {
+    margin: 0 0 10px;
+    padding: 10px 15px;
+    background-color: #1F1C1C;
+    border-radius: 15px;
+    color: #9C71C8;
+    font-weight: 700;
+    border: none;
+        &::placeholder {
+            color: #9C71C8;
+        }
+}
+
+.add__btn {
+    outline: none;
+    border: none;
+    font-weight: 700;
+    padding: 10px 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    background-color: #1F1C1C;
+    color: #9C71C8;
+    transition: background-color 0.2s, color 0.2s;
+        &:hover {
+            background-color: #9C71C8;
+            color: #fff;
+        }
+}

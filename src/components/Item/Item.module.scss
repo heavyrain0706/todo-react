@@ -1,0 +1,60 @@
+.todo__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 10px 0;
+    border-bottom: 1px solid #1B1919;
+    padding: 0 0 10px 0;
+    font-size: 16px;
+}
+
+.todo__title {
+    color: #fff;
+}
+
+.item__buttons {
+    display: flex;
+    align-items: center;
+}
+
+.todo__del_btn {
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+        &:hover {
+            svg {
+                transform: scale(1.1);
+                path {
+                    fill: #F3B8C2;
+                }
+            }
+        }
+        svg {
+            transition: transform 0.2s;
+            path {
+                transition: fill 0.2s;
+            }
+        }
+}
+
+.todo__open_btn {
+    margin: 0 5px 0 0;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+        &:hover {
+            svg {
+                transform: scale(1.1);
+                path {
+                    fill: #F3B8C2;
+                }
+            }
+        }
+        svg {
+            transition: transform 0.2s;
+            path {
+                transition: fill 0.2s;
+            }
+        }
+}
+
