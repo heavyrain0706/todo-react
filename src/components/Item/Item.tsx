@@ -1,6 +1,5 @@
 import { Modal } from "antd";
-import { copyFile } from "fs";
-import { FC, useRef, useState } from "react";
+import { FC, useState } from "react";
 import { useDispatch } from "react-redux";
 import { TodosActionCreators } from "../../store/actionCreators";
 import { ITodo } from "../../types/ITodo";
