@@ -10,14 +10,14 @@ const Items: FC = () => {
     const {todos} = useTypedSelector(state => state.todoReducer)
     const dispatch = useDispatch()  
 
-    /* eslint-disable */
+
     useEffect( () => {
         const tasksFromStorage = JSON.parse(localStorage.getItem('tasks') || '{}');
         if (Array.isArray(tasksFromStorage) && tasksFromStorage.length > 0) {
             dispatch(TodosActionCreators.loadTodos(tasksFromStorage))
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    /* eslint-enable */
 
     return ( 
         <div className={classes.todos}>
