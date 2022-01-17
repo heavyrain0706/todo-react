@@ -2,6 +2,7 @@ import { Alert } from "antd";
 import React, { FC, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { TodosActionCreators } from "../../store/actionCreators";
+import { ITodo } from "../../types/ITodo";
 import classes from './Header.module.scss'
  
 const Header: FC = () => {
@@ -17,18 +18,17 @@ const Header: FC = () => {
     }
 
     const pushTask = (e: React.MouseEvent<HTMLButtonElement>) => {
-
         if (inputElement.current.value === '') {
             console.log('Show error init')
             setShowInputError(true)
         } else {
-            // @ts-ignore
-            let tasksFromStorage = JSON.parse(localStorage.getItem('tasks'))
-            let newTodo = {
+            let tasksFromStorage = JSON.parse(localStorage.getItem('tasks') || '{}')
+            let newTodo: ITodo = {
                 id: Date.now(),
-                title: mytodo
+                title: mytodo,
+                completed: false
             }
-            if (tasksFromStorage) {
+            if (Array.isArray(tasksFromStorage)) {
                 tasksFromStorage.push(newTodo)
             } else {
                 tasksFromStorage = []

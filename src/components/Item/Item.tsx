@@ -1,28 +1,27 @@
 import { Modal } from "antd";
+import { copyFile } from "fs";
 import { FC, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { TodosActionCreators } from "../../store/actionCreators";
+import { ITodo } from "../../types/ITodo";
 import classes from './Item.module.scss'
 
 interface ItemProps {
-    id: any;
-    title: string;
+    todo: ITodo
 }
  
-const Item: FC<ItemProps> = ({title, id}) => { 
+const Item: FC<ItemProps> = ({todo}) => { 
 
     const dispatch = useDispatch()
-    const elementToDelete: any = useRef()
     const [isModalVisible, setIsModalVisible] = useState(false);
 
 
     const deleteItemFunc = (e: React.MouseEvent<HTMLButtonElement>) => {
         console.log('deleting task...')
-        // @ts-ignore
-        let storage: any[] = JSON.parse(localStorage.getItem('tasks'))
-        let storageAfterDelete = storage.filter(storageElement => storageElement.id != elementToDelete.current.id)
+        let storage: ITodo[] = JSON.parse(localStorage.getItem('tasks') || '{}')
+        let storageAfterDelete = storage.filter(storageElement => storageElement.id !== todo.id)
         localStorage.setItem('tasks', JSON.stringify(storageAfterDelete))
-        dispatch(TodosActionCreators.fetchTodos(storageAfterDelete))
+        dispatch(TodosActionCreators.loadTodos(storageAfterDelete))
     }
 
     const openItemFunc = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -30,10 +29,25 @@ const Item: FC<ItemProps> = ({title, id}) => {
         setIsModalVisible(true);
     }
 
-    return ( 
-        <div id={id} ref={elementToDelete} className={classes.todo__item}> 
-            <div className={classes.todo__title}>
-                {title}
+    const chekboxHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        console.log("Чекинпута " + e.target.checked)
+        let storage: ITodo[] = JSON.parse(localStorage.getItem('tasks') || '{}')
+        const current = storage.find(storageTodo => storageTodo.id === todo.id)
+        if(current) {
+            console.log(storage)
+            console.log("статус найденного: " + current.completed)
+            current.completed = !current.completed
+            localStorage.setItem('tasks', JSON.stringify(storage))
+            dispatch(TodosActionCreators.loadTodos(storage))
+        }
+    }
+
+    return (
+        <label className={classes.todo__item}>
+            <input className={classes.todo__itemCheckbox} type='checkbox' checked={todo.completed ? true : false} onChange={chekboxHandler}/>
+            <span className={classes.todo__itemCheckStyle}></span>
+            <div className={todo.completed ? classes.todo__titleСrossed  : classes.todo__title}>
+                {todo.title}
             </div>
             <div className={classes.item__buttons}>
                  <button onClick={openItemFunc} className={classes.todo__open_btn}>
@@ -46,9 +60,9 @@ const Item: FC<ItemProps> = ({title, id}) => {
                 </button>
             </div>
             <Modal title="Details" visible={isModalVisible} onOk={() => setIsModalVisible(false)} onCancel={() => setIsModalVisible(false)}>
-                <p>{title}</p>
+                <p>{todo.title}</p>
             </Modal>
-        </div> 
+        </label> 
     ) 
 } 
  
