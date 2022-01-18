@@ -16,3 +16,9 @@
     text-align: center;
     color: #9C71C8;
 }
+
+@media (max-width: 610px){
+    .box {
+        margin: 40px 10px 0 10px;
+    }
+}
