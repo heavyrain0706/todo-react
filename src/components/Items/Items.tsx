@@ -1,7 +1,7 @@
 import { FC, useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { useTypedSelector } from "../../hooks/useTypedSelector"
-import { TodosActionCreators } from "../../store/actionCreators"
+import { TodosActionCreators } from "../../store/todo/actionCreators"
 import Item from "../Item/Item"
 import classes from './Items.module.scss'
 

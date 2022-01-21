@@ -1,8 +1,8 @@
 import { Modal } from "antd";
 import { FC, useState } from "react";
 import { useDispatch } from "react-redux";
-import { TodosActionCreators } from "../../store/actionCreators";
-import { ITodo } from "../../types/ITodo";
+import { TodosActionCreators } from "../../store/todo/actionCreators";
+import { ITodo } from "../../store/todo/models/ITodo";
 import classes from './Item.module.scss'
 
 interface ItemProps {
@@ -16,7 +16,6 @@ const Item: FC<ItemProps> = ({todo}) => {
 
 
     const deleteItemFunc = (e: React.MouseEvent<HTMLButtonElement>) => {
-        console.log('deleting task...')
         let storage: ITodo[] = JSON.parse(localStorage.getItem('tasks') || '{}')
         let storageAfterDelete = storage.filter(storageElement => storageElement.id !== todo.id)
         localStorage.setItem('tasks', JSON.stringify(storageAfterDelete))
@@ -24,17 +23,13 @@ const Item: FC<ItemProps> = ({todo}) => {
     }
 
     const openItemFunc = (e: React.MouseEvent<HTMLButtonElement>) => {
-        console.log('Opening task...')
         setIsModalVisible(true);
     }
 
     const chekboxHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log("Чекинпута " + e.target.checked)
         let storage: ITodo[] = JSON.parse(localStorage.getItem('tasks') || '{}')
         const current = storage.find(storageTodo => storageTodo.id === todo.id)
         if(current) {
-            console.log(storage)
-            console.log("статус найденного: " + current.completed)
             current.completed = !current.completed
             localStorage.setItem('tasks', JSON.stringify(storage))
             dispatch(TodosActionCreators.loadTodos(storage))

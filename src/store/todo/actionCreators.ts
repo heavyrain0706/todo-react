@@ -1,6 +1,6 @@
-import { ITodo } from './../types/ITodo';
-import { LoadTodos, CreateTodo } from './../types/todos'
-import { TodoActionTypes } from "../types/todos"
+import { CreateTodo, LoadTodos, TodoActionTypes } from './types/todos';
+import { ITodo } from './models/ITodo';
+
 
 export const TodosActionCreators = {
     loadTodos: (payload: ITodo[]): LoadTodos => ({type: TodoActionTypes.LOAD_TODOS, payload}),

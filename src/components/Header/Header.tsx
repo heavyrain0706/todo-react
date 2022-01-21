@@ -1,8 +1,8 @@
 import { Alert } from "antd";
 import React, { FC, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { TodosActionCreators } from "../../store/actionCreators";
-import { ITodo } from "../../types/ITodo";
+import { TodosActionCreators } from "../../store/todo/actionCreators";
+import { ITodo } from "../../store/todo/models/ITodo";
 import classes from './Header.module.scss'
  
 const Header: FC = () => {
@@ -19,7 +19,6 @@ const Header: FC = () => {
 
     const pushTask = (e: React.MouseEvent<HTMLButtonElement>) => {
         if (inputElement.current.value === '') {
-            console.log('Show error init')
             setShowInputError(true)
         } else {
             let tasksFromStorage = JSON.parse(localStorage.getItem('tasks') || '{}')
